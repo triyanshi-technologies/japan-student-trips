@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}input,textarea,select{font:inherit}input:focus,textarea:focus,select:focus{outline:none;border-color:#172B3A!important;box-shadow:0 0 0 3px rgba(216,74,58,0.25)}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
+<div style="min-height:100vh;background:#F7F5EF">
+<dc-import name="Site Nav" active="plan" hint-size="100%,72px" style="position:sticky;top:0;z-index:50"></dc-import>
+
+<section data-screen-label="Plan a Trip" style="max-width:1240px;margin:0 auto;padding:56px 32px 96px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+  <aside style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:28px;position:sticky;top:100px">
+    <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Request a custom trip proposal</span>
+    <h1 style="margin:0;font:800 clamp(40px,4.6vw,60px)/1.02 Manrope,sans-serif;letter-spacing:-0.03em;text-wrap:balance">Tell us where you're starting from.</h1>
+    <p style="margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">A full itinerary, a few ideas or nothing but a month and a headcount — all are fine. It takes about four minutes, and nothing here commits you to anything.</p>
+    <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(23,43,58,0.14)">
+      <span style="font:700 15px/1 Manrope,sans-serif;padding:20px 0 6px">What happens next</span>
+      <div style="display:flex;gap:16px;padding:14px 0"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:#172B3A;color:#F7F5EF;font:700 13px/26px Inter,sans-serif;text-align:center">1</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#2C3F4C">A coordinator reads your request and replies within [X] working days.</span></div>
+      <div style="display:flex;gap:16px;padding:14px 0"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:#172B3A;color:#F7F5EF;font:700 13px/26px Inter,sans-serif;text-align:center">2</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#2C3F4C">A 30-minute discovery call about goals, students and constraints.</span></div>
+      <div style="display:flex;gap:16px;padding:14px 0"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:#172B3A;color:#F7F5EF;font:700 13px/26px Inter,sans-serif;text-align:center">3</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#2C3F4C">A written proposal with route, inclusions, exclusions and an estimate.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;padding:22px;background:#D9E5DF;border-radius:16px">
+      <span style="font:700 15px/1.2 Manrope,sans-serif">Prefer to talk first?</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="#" style="padding:11px 14px;border-radius:10px;background:#172B3A;color:#fff;font:600 14px/1 Inter,sans-serif;text-decoration:none">WhatsApp</a>
+        <a href="#" style="padding:11px 14px;border-radius:10px;background:#fff;color:#172B3A;font:600 14px/1 Inter,sans-serif;text-decoration:none">+91 [phone]</a>
+        <a href="#" style="padding:11px 14px;border-radius:10px;background:#fff;color:#172B3A;font:600 14px/1 Inter,sans-serif;text-decoration:none">Email us</a>
+      </div>
+    </div>
+  </aside>
+
+  <div style="flex:1.4 1 520px;min-width:0;background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:24px;overflow:hidden">
+    <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:24px 36px;border-bottom:1px solid rgba(23,43,58,0.08);display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;font:600 13px/1 Inter,sans-serif;color:#4A5A66"><span style="white-space:nowrap">Step {{ stepNum }} of 4 · {{ stepName }}</span><span style="flex:none">{{ pct }}%</span></div>
+        <div style="height:4px;background:#EEEBE3;border-radius:4px;overflow:hidden"><div style="height:100%;width:{{ pctW }};background:#D84A3A;border-radius:4px;transition:width 300ms ease-out"></div></div>
+      </div>
+    </sc-if>
+
+    <div style="padding:32px 36px 36px;display:flex;flex-direction:column;gap:28px">
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 15px/1.3 Inter,sans-serif">Organisation type <span style="color:#D84A3A">*</span></span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ orgChips }}" as="c" hint-placeholder-count="5">
+              <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid #172B3A;background:#172B3A;color:#fff;font:500 14px/1 Inter,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+              <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid rgba(23,43,58,0.2);background:#fff;color:#172B3A;font:500 14px/1 Inter,sans-serif;cursor:pointer" style-hover="border-color:#172B3A">{{ c.label }}</button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">Institution name <span style="display:none"></span><input placeholder="e.g. Greenfield International School" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">City in India<input placeholder="e.g. Pune" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">Your name *<input placeholder="Full name" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">Role<input placeholder="e.g. Principal, Activities Head" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">Official email *<input type="email" placeholder="name@institution.edu.in" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">Phone / WhatsApp *<input type="tel" placeholder="+91" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"></label>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 15px/1.3 Inter,sans-serif">Roughly how many people will travel?</span>
+          <span style="font:400 14px/1.4 Inter,sans-serif;color:#4A5A66;margin-top:-6px">Include teachers and accompanying adults.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ sizeChips }}" as="c" hint-placeholder-count="6">
+              <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid #172B3A;background:#172B3A;color:#fff;font:500 14px/1 Inter,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+              <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid rgba(23,43,58,0.2);background:#fff;color:#172B3A;font:500 14px/1 Inter,sans-serif;cursor:pointer" style-hover="border-color:#172B3A">{{ c.label }}</button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 15px/1.3 Inter,sans-serif">Student age group</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ ageChips }}" as="c" hint-placeholder-count="4">
+              <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid #172B3A;background:#172B3A;color:#fff;font:500 14px/1 Inter,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+              <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid rgba(23,43,58,0.2);background:#fff;color:#172B3A;font:500 14px/1 Inter,sans-serif;cursor:pointer" style-hover="border-color:#172B3A">{{ c.label }}</button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 15px/1.3 Inter,sans-serif">Where are you with planning?</span>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px">
+            <sc-for list="{{ stageChips }}" as="c" hint-placeholder-count="3">
+              <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.pick }}" style="padding:18px;border-radius:14px;border:1.5px solid #D84A3A;background:#FBEDEA;color:#172B3A;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px"><span style="font:700 15px/1.2 Manrope,sans-serif">{{ c.label }}</span><span style="font:400 13px/1.4 Inter,sans-serif;color:#3E4F5B">{{ c.sub }}</span></button></sc-if>
+              <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="padding:18px;border-radius:14px;border:1.5px solid rgba(23,43,58,0.16);background:#fff;color:#172B3A;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px" style-hover="border-color:#172B3A"><span style="font:700 15px/1.2 Manrope,sans-serif">{{ c.label }}</span><span style="font:400 13px/1.4 Inter,sans-serif;color:#3E4F5B">{{ c.sub }}</span></button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 15px/1.3 Inter,sans-serif">What should students come back with?</span>
+          <span style="font:400 14px/1.4 Inter,sans-serif;color:#4A5A66;margin-top:-6px">Pick as many as you like.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ goalChips }}" as="c" hint-placeholder-count="6">
+              <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid #D84A3A;background:#D84A3A;color:#fff;font:500 14px/1 Inter,sans-serif;cursor:pointer">✓ {{ c.label }}</button></sc-if>
+              <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid rgba(23,43,58,0.2);background:#fff;color:#172B3A;font:500 14px/1 Inter,sans-serif;cursor:pointer" style-hover="border-color:#172B3A">+ {{ c.label }}</button></sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">Preferred duration<select style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"><option>Not sure yet</option><option>5–6 days</option><option>7–8 days</option><option>9–12 days</option></select></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">Tentative travel window<input placeholder="e.g. May–June 2027" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font:600 14px/1.3 Inter,sans-serif">How flexible are the dates?<select style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400"><option>Fairly flexible</option><option>Fixed (exam / term calendar)</option><option>Very flexible</option></select></label>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:600 15px/1.3 Inter,sans-serif">Budget</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ budgetChips }}" as="c" hint-placeholder-count="3">
+              <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid #172B3A;background:#172B3A;color:#fff;font:500 14px/1 Inter,sans-serif;cursor:pointer">{{ c.label }}</button></sc-if>
+              <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ c.pick }}" style="padding:11px 16px;border-radius:999px;border:1.5px solid rgba(23,43,58,0.2);background:#fff;color:#172B3A;font:500 14px/1 Inter,sans-serif;cursor:pointer" style-hover="border-color:#172B3A">{{ c.label }}</button></sc-if>
+            </sc-for>
+          </div>
+          <sc-if value="{{ showBudgetInput }}" hint-placeholder-val="{{ false }}">
+            <input placeholder="Amount in ₹ — a rough range is fine" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A">
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+        <label style="display:flex;flex-direction:column;gap:8px;font:600 15px/1.3 Inter,sans-serif">Anything we should plan around?
+          <span style="font:400 14px/1.4 Inter,sans-serif;color:#4A5A66">Dietary needs (vegetarian, Jain, allergies), accessibility, learning needs, rooming preferences.</span>
+          <textarea rows="5" placeholder="e.g. 12 students are Jain, two teachers need step-free access, we'd like a girls-only floor." style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400;resize:vertical;line-height:1.5"></textarea>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px;font:600 15px/1.3 Inter,sans-serif">Anything else? <span style="font:400 14px/1.4 Inter,sans-serif;color:#4A5A66">Places you've heard about, things you want to avoid, past trips that went well.</span>
+          <textarea rows="3" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A;font-weight:400;resize:vertical"></textarea>
+        </label>
+        <button onClick="{{ toggleConsent }}" style="display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:12px;background:#F7F5EF;border:none;text-align:left;cursor:pointer">
+          <span style="flex:none;width:22px;height:22px;border-radius:6px;border:1.5px solid #172B3A;background:{{ consentBg }};color:#fff;font:700 13px/20px Inter,sans-serif;text-align:center">{{ consentMark }}</span>
+          <span style="font:400 14px/1.5 Inter,sans-serif;color:#2C3F4C">I agree that Manabi Journeys may use these details to respond to this enquiry and prepare a proposal, as described in the <a href="#" style="color:#172B3A;font-weight:600">Privacy Policy</a>.</span>
+        </button>
+      </sc-if>
+
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:22px;padding:24px 0">
+          <span style="width:56px;height:56px;border-radius:50%;background:#D9E5DF;color:#172B3A;display:flex;align-items:center;justify-content:center;font:700 26px/1 Inter,sans-serif">✓</span>
+          <h2 style="margin:0;font:800 36px/1.08 Manrope,sans-serif;letter-spacing:-0.025em">Thank you — we have your request.</h2>
+          <p style="margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">A coordinator will reply to your email within [X] working days to set up a discovery call. A copy of your answers is on its way to your inbox.</p>
+          <div style="display:flex;flex-direction:column;gap:0;border:1px solid rgba(23,43,58,0.12);border-radius:16px;overflow:hidden">
+            <div style="padding:16px 20px;display:flex;justify-content:space-between;gap:12px;background:#F7F5EF"><span style="font:600 14px/1.3 Inter,sans-serif">Your request</span><span style="font:600 13px/1 Inter,sans-serif;color:#D84A3A">Received</span></div>
+            <div style="padding:14px 20px;display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(23,43,58,0.08);font:400 14px/1.4 Inter,sans-serif"><span style="color:#4A5A66">Organisation</span><span>{{ sumOrg }}</span></div>
+            <div style="padding:14px 20px;display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(23,43,58,0.08);font:400 14px/1.4 Inter,sans-serif"><span style="color:#4A5A66">Group</span><span>{{ sumGroup }}</span></div>
+            <div style="padding:14px 20px;display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(23,43,58,0.08);font:400 14px/1.4 Inter,sans-serif"><span style="color:#4A5A66">Focus</span><span style="text-align:right">{{ sumGoals }}</span></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="#" style="padding:15px 22px;border-radius:12px;background:#172B3A;color:#fff;font:600 15px/1 Inter,sans-serif;text-decoration:none">Book a call slot now</a>
+            <a href="Sample%20Itineraries.dc.html" style="padding:15px 22px;border-radius:12px;border:1.5px solid #172B3A;color:#172B3A;font:600 15px/1 Inter,sans-serif;text-decoration:none">Browse sample itineraries</a>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;border-top:1px solid rgba(23,43,58,0.08)">
+          <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}"><button onClick="{{ back }}" style="padding:15px 20px;border-radius:12px;border:none;background:none;color:#172B3A;font:600 15px/1 Inter,sans-serif;cursor:pointer">← Back</button></sc-if>
+          <sc-if value="{{ isFirst }}" hint-placeholder-val="{{ true }}"><span style="font:400 13px/1.4 Inter,sans-serif;color:#4A5A66">* Required</span></sc-if>
+          <button onClick="{{ next }}" style="padding:16px 26px;border-radius:12px;border:none;background:#D84A3A;color:#fff;font:700 16px/1 Inter,sans-serif;cursor:pointer;transition:background 200ms ease-out" style-hover="background:#BF3B2C">{{ nextLabel }}</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Site Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { step: 1, org: 'School', size: '30–50', age: '13–18', stage: 'Some ideas', goals: ['Culture & language', 'STEM & technology'], budget: 'Need guidance', consent: false };
+  single(key, labels) {
+    return labels.map(l => {
+      const label = typeof l === 'string' ? l : l[0];
+      const on = this.state[key] === label;
+      return { label, sub: typeof l === 'string' ? '' : l[1], on, off: !on, pick: () => this.setState({ [key]: label }) };
+    });
+  }
+  renderVals() {
+    const s = this.state;
+    const names = ['About you', 'Your group', 'Your trip', 'Final details'];
+    const pct = Math.round((s.step - 1) / 4 * 100 + 25);
+    return {
+      s1: s.step === 1, s2: s.step === 2, s3: s.step === 3, s4: s.step === 4, done: s.step === 5, notDone: s.step < 5,
+      stepNum: s.step, stepName: names[s.step - 1] || '', pct, pctW: pct + '%',
+      canBack: s.step > 1, isFirst: s.step === 1,
+      nextLabel: s.step === 4 ? 'Send my request' : 'Continue',
+      next: () => this.setState({ step: Math.min(5, s.step + 1) }),
+      back: () => this.setState({ step: Math.max(1, s.step - 1) }),
+      orgChips: this.single('org', ['School', 'College / university', 'Educational org / NGO', 'Corporate / other', 'Travel partner']),
+      sizeChips: this.single('size', ['Under 15', '15–30', '30–50', '50–100', '100+', 'Undecided']),
+      ageChips: this.single('age', ['Under 13', '13–18', '18+', 'Mixed / undecided']),
+      stageChips: this.single('stage', [['Full itinerary', 'We know what we want'], ['Some ideas', 'A theme or a few places'], ['From scratch', 'Help us shape it']]),
+      budgetChips: this.single('budget', ['Per participant', 'Total group budget', 'Need guidance']),
+      showBudgetInput: s.budget !== 'Need guidance',
+      goalChips: ['STEM & technology', 'Culture & language', 'School / university exchange', 'Business & industry', 'Sustainability', 'Other'].map(label => {
+        const on = s.goals.includes(label);
+        return { label, on, off: !on, pick: () => this.setState({ goals: on ? s.goals.filter(g => g !== label) : [...s.goals, label] }) };
+      }),
+      consentBg: s.consent ? '#172B3A' : '#fff', consentMark: s.consent ? '✓' : '',
+      toggleConsent: () => this.setState({ consent: !s.consent }),
+      sumOrg: s.org, sumGroup: s.size + ' people · ages ' + s.age, sumGoals: s.goals.join(', ') || '—',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
+<div style="min-height:100vh;background:#F7F5EF">
+<dc-import name="Site Nav" active="programs" hint-size="100%,72px" style="position:sticky;top:0;z-index:50"></dc-import>
+
+<section data-screen-label="Programs intro" style="max-width:1240px;margin:0 auto;padding:72px 32px 48px;display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between">
+  <div style="flex:1 1 560px;display:flex;flex-direction:column;gap:20px">
+    <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Programs &amp; learning themes</span>
+    <h1 style="margin:0;font:800 clamp(44px,5.4vw,72px)/1 Manrope,sans-serif;letter-spacing:-0.035em;text-wrap:balance">Building blocks, not packages.</h1>
+  </div>
+  <p style="flex:1 1 320px;margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">Most good trips mix two or three themes. Add the ones that fit your students — we'll turn them into a route that makes sense.</p>
+</section>
+
+<section data-screen-label="Themes" style="max-width:1240px;margin:0 auto;padding:0 32px 140px">
+  <div style="display:flex;flex-direction:column;border-top:2px solid #172B3A">
+    <sc-for list="{{ themes }}" as="t" hint-placeholder-count="6">
+      <div style="display:flex;flex-wrap:wrap;gap:32px;padding:36px 0;border-bottom:1px solid rgba(23,43,58,0.14);align-items:flex-start">
+        <div style="flex:0 0 200px;aspect-ratio:1;border-radius:16px;overflow:hidden;background:#D9E5DF"><image-slot id="{{ t.img }}" shape="rect" placeholder="{{ t.imgLabel }}" src="{{ t.src }}" credit="{{ t.credit }}" credit-href="{{ t.href }}"></image-slot></div>
+        <div style="flex:1 1 300px;display:flex;flex-direction:column;gap:12px;min-width:0">
+          <span style="font:600 13px/1 Inter,sans-serif;color:#D84A3A">{{ t.num }}</span>
+          <h2 style="margin:0;font:700 clamp(26px,2.6vw,34px)/1.1 Manrope,sans-serif;letter-spacing:-0.02em">{{ t.name }}</h2>
+          <p style="margin:0;font:400 16px/1.6 Inter,sans-serif;color:#3E4F5B;max-width:460px;text-wrap:pretty">{{ t.value }}</p>
+        </div>
+        <div style="flex:1 1 260px;display:flex;flex-direction:column;gap:10px;min-width:0">
+          <span style="font:600 12px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#4A5A66;padding-bottom:4px">Could include</span>
+          <sc-for list="{{ t.items }}" as="x" hint-placeholder-count="3"><span style="font:400 15px/1.45 Inter,sans-serif;color:#2C3F4C;padding-left:16px;position:relative"><span style="position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:#E9BFC4"></span>{{ x }}</span></sc-for>
+          <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}"><span style="font:400 13px/1.45 Inter,sans-serif;color:#4A5A66;padding-top:4px">{{ t.note }}</span></sc-if>
+        </div>
+        <div style="flex:0 0 auto;display:flex;align-items:center">
+          <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.toggle }}" style="padding:14px 18px;border-radius:12px;border:1.5px solid #172B3A;background:#172B3A;color:#fff;font:600 14px/1 Inter,sans-serif;cursor:pointer;white-space:nowrap">✓ In my trip</button></sc-if>
+          <sc-if value="{{ t.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.toggle }}" style="padding:14px 18px;border-radius:12px;border:1.5px solid #172B3A;background:none;color:#172B3A;font:600 14px/1 Inter,sans-serif;cursor:pointer;white-space:nowrap;transition:background 200ms ease-out" style-hover="background:rgba(23,43,58,0.06)">+ Add to my trip</button></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<sc-if value="{{ hasPicks }}" hint-placeholder-val="{{ true }}">
+<div style="position:sticky;bottom:20px;z-index:40;max-width:1240px;margin:-110px auto 40px;padding:0 32px">
+  <div style="background:#172B3A;color:#fff;border-radius:18px;padding:16px 16px 16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 18px 40px -18px rgba(23,43,58,0.6)">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-width:0">
+      <span style="font:700 15px/1 Manrope,sans-serif">Your trip mix</span>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <sc-for list="{{ picks }}" as="p" hint-placeholder-count="2"><span style="padding:7px 11px;border-radius:999px;background:rgba(247,245,239,0.14);font:500 13px/1 Inter,sans-serif">{{ p }}</span></sc-for>
+      </div>
+    </div>
+    <a href="Plan%20a%20Trip.dc.html" style="padding:14px 20px;border-radius:12px;background:#D84A3A;color:#fff;font:700 15px/1 Inter,sans-serif;text-decoration:none;white-space:nowrap" style-hover="background:#BF3B2C">Customize This Experience →</a>
+  </div>
+</div>
+</sc-if>
+
+<dc-import name="Site Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { picks: ['STEM & innovation', 'Culture & heritage'] };
+  data = [
+    ['Culture & heritage', 'Students notice detail, practise patience and come back able to explain why tradition still matters in a modern country.', ['Tea ceremony and calligraphy with local teachers', 'Heritage walks in Kyoto, Nara or Kanazawa', 'Taiko, origami or indigo-dye workshops'], ''],
+    ['STEM & innovation', 'Applied science, engineering and problem-solving — seeing how ideas from class become trains, robots and earthquake-safe cities.', ['Science museums and hands-on labs', 'Robotics experiences', 'Technology-focused visits'], 'Specific visits depend on availability.'],
+    ['School & university exchange', 'Cross-cultural communication and a real comparison of how students learn in Japan and India.', ['A day at a Japanese school or campus', 'Joint classes, clubs or presentations', 'Student-to-student Q&A'], 'Subject to partner confirmation.'],
+    ['Language & communication', 'Confidence speaking in an unfamiliar language and the intercultural skills that come with it.', ['Introductory Japanese sessions', 'Guided tasks in markets and stations', 'Etiquette workshops before departure'], ''],
+    ['Business & industry', 'Real-world context for commerce, engineering and management students.', ['Manufacturing and production sites', 'Innovation and design centres', 'Talks on Japanese work culture'], 'Where available.'],
+    ['Sustainability & cities', 'Systems thinking and responsible citizenship, through cities that run on public transport and careful recycling.', ['Public transport and urban planning', 'Recycling and waste-sorting centres', 'Disaster-preparedness learning centres'], ''],
+  ];
+  photos = [{"src":"https://images.unsplash.com/photo-1743515483156-6bf698521774?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Rod Long on Unsplash","href":"https://unsplash.com/@rodlong"},{"src":"https://images.unsplash.com/photo-1593376893114-1aed528d80cf?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Maximalfocus on Unsplash","href":"https://unsplash.com/@maximalfocus"},{"src":"https://images.unsplash.com/photo-1763705860985-d44c11c58178?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Rochelle Lee on Unsplash","href":"https://unsplash.com/@bestlifanna"},{"src":"https://images.unsplash.com/photo-1754889940746-fe9b359ef441?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Yanhao Fang on Unsplash","href":"https://unsplash.com/@alamanga"},{"src":"https://images.unsplash.com/photo-1643646257574-c3732632dcaf?w=1600&q=70&auto=format&fit=crop","credit":"Photo by MARIOLA GROBELSKA on Unsplash","href":"https://unsplash.com/@mariolagr"},{"src":"https://images.unsplash.com/photo-1602172747222-123f7e09e8d5?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Victor Deweerdt on Unsplash","href":"https://unsplash.com/@subzero"}];
+  renderVals() {
+    const p = this.state.picks;
+    return {
+      themes: this.data.map(([name, value, items, note], i) => {
+        const on = p.includes(name);
+        return { ...this.photos[i], name, value, items, note, num: String(i + 1).padStart(2, '0'), on, off: !on, img: 'prog-' + i, imgLabel: name,
+          toggle: () => this.setState({ picks: on ? p.filter(x => x !== name) : [...p, name] }) };
+      }),
+      picks: p, hasPicks: p.length > 0,
+    };
+  }
+}
+</script>
+</body>
+</html>

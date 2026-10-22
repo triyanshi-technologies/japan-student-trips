@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
+<div style="min-height:100vh;background:#F7F5EF">
+<dc-import name="Site Nav" active="japan" hint-size="100%,72px" style="position:sticky;top:0;z-index:50"></dc-import>
+
+<section data-screen-label="Japan hero" style="position:relative;margin:16px;border-radius:28px;overflow:hidden;min-height:560px;display:flex;align-items:flex-end;background:#172B3A">
+  <div style="position:absolute;inset:0"><image-slot id="jp-hero" src="https://images.unsplash.com/photo-1624253321171-1be53e12f5f4?w=1600&q=70&auto=format&fit=crop" credit="Photo by Roméo A. on Unsplash" credit-href="https://unsplash.com/@gronemo" shape="rect" placeholder="Wide: Shinkansen passing Mt Fuji, or Kyoto lanes at dusk"></image-slot></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(23,43,58,0) 25%,rgba(23,43,58,0.88) 100%);pointer-events:none"></div>
+  <div style="position:relative;width:100%;max-width:1240px;margin:0 auto;padding:56px 48px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;pointer-events:none">
+    <div style="display:flex;flex-direction:column;gap:18px;max-width:760px">
+      <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#E9BFC4">Japan educational trips for Indian institutions</span>
+      <h1 style="margin:0;font:800 clamp(44px,6vw,84px)/0.98 Manrope,sans-serif;letter-spacing:-0.035em;color:#fff;text-wrap:balance">Old temples, fast trains, very good questions.</h1>
+    </div>
+    <span style="font:500 64px/1 'Noto Serif JP',serif;color:#fff;opacity:0.9">日本</span>
+  </div>
+</section>
+
+<section data-screen-label="Overview" style="max-width:1240px;margin:0 auto;padding:88px 32px;display:flex;flex-wrap:wrap;gap:56px">
+  <p style="flex:2 1 520px;margin:0;font:600 clamp(22px,2.4vw,30px)/1.45 Manrope,sans-serif;letter-spacing:-0.015em;text-wrap:pretty">Japan is close enough for a week-long trip, safe and orderly for large student groups, and full of things students can't see at home — from earthquake-proof architecture to a culture of quiet responsibility. We plan it around what your students are learning.</p>
+  <div style="flex:1 1 280px;display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(23,43,58,0.14)">
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(23,43,58,0.14)"><span style="color:#4A5A66;font-size:15px">Flight from Delhi / Mumbai</span><span style="font-weight:600;font-size:15px">≈ 7.5–10 hrs</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(23,43,58,0.14)"><span style="color:#4A5A66;font-size:15px">Time difference</span><span style="font-weight:600;font-size:15px">IST + 3.5 hrs</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(23,43,58,0.14)"><span style="color:#4A5A66;font-size:15px">Typical trip length</span><span style="font-weight:600;font-size:15px">6–10 days</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(23,43,58,0.14)"><span style="color:#4A5A66;font-size:15px">Popular windows</span><span style="font-weight:600;font-size:15px">Apr–Jun · Oct–Dec</span></div>
+  </div>
+</section>
+
+<section data-screen-label="Cities" style="background:#fff;border-top:1px solid rgba(23,43,58,0.08);border-bottom:1px solid rgba(23,43,58,0.08)">
+  <div style="max-width:1240px;margin:0 auto;padding:88px 32px">
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px">
+      <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Where you could go</span>
+      <h2 style="margin:0;max-width:640px;font:700 clamp(32px,3.6vw,46px)/1.08 Manrope,sans-serif;letter-spacing:-0.025em;text-wrap:balance">Each city teaches something different.</h2>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:stretch">
+      <div style="flex:1 1 280px;display:flex;flex-direction:column;border-top:1px solid rgba(23,43,58,0.14)">
+        <sc-for list="{{ cities }}" as="c" hint-placeholder-count="6">
+          <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ c.pick }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:20px 4px;border:none;border-bottom:1px solid rgba(23,43,58,0.14);background:none;cursor:pointer;text-align:left;color:#D84A3A"><span style="font:800 28px/1 Manrope,sans-serif;letter-spacing:-0.02em">{{ c.name }}</span><span style="font:500 13px/1 Inter,sans-serif;color:#172B3A">{{ c.tag }}</span></button>
+          </sc-if>
+          <sc-if value="{{ c.off }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ c.pick }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:20px 4px;border:none;border-bottom:1px solid rgba(23,43,58,0.14);background:none;cursor:pointer;text-align:left;color:#172B3A" style-hover="color:#D84A3A"><span style="font:700 28px/1 Manrope,sans-serif;letter-spacing:-0.02em">{{ c.name }}</span><span style="font:500 13px/1 Inter,sans-serif;color:#4A5A66">{{ c.tag }}</span></button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <div style="flex:1.6 1 440px;min-width:0;display:flex;flex-direction:column;gap:22px">
+        <div style="aspect-ratio:16/10;border-radius:20px;overflow:hidden;background:#D9E5DF"><sc-for list="{{ cityImgs }}" as="im" hint-placeholder-count="1"><sc-if value="{{ im.on }}" hint-placeholder-val="{{ false }}"><image-slot id="{{ im.id }}" shape="rect" placeholder="{{ im.label }}" src="{{ im.src }}" credit="{{ im.credit }}" credit-href="{{ im.href }}"></image-slot></sc-if></sc-for></div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font:700 24px/1.2 Manrope,sans-serif">{{ city.name }}<span style="font:500 18px/1 'Noto Serif JP',serif;color:#4A5A66;margin-left:12px">{{ city.jp }}</span></span>
+          <p style="margin:0;font:400 16px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">{{ city.desc }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:4px">
+            <sc-for list="{{ city.learn }}" as="t" hint-placeholder-count="3"><span style="padding:8px 12px;border-radius:999px;background:#D9E5DF;font:500 13px/1 Inter,sans-serif">{{ t }}</span></sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Inclusions" style="max-width:1240px;margin:0 auto;padding:88px 32px">
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px">
+    <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">What a proposal usually covers</span>
+    <h2 style="margin:0;max-width:720px;font:700 clamp(32px,3.6vw,46px)/1.08 Manrope,sans-serif;letter-spacing:-0.025em;text-wrap:balance">No surprises on the invoice.</h2>
+    <p style="margin:0;max-width:620px;font:400 16px/1.6 Inter,sans-serif;color:#3E4F5B">Every line below is confirmed, optional or excluded in writing — per participant or per group, with what the estimate assumes.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+    <div style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px">
+      <span style="font:700 18px/1.2 Manrope,sans-serif;display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:#172B3A"></span>Usually included</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Accommodation, twin / triple rooms</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Private coach and rail passes</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Daily breakfast + agreed group meals</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Learning visits, workshops and entry fees</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">English-speaking guide and on-ground coordinator</span>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px">
+      <span style="font:700 18px/1.2 Manrope,sans-serif;display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;border:2px solid #172B3A"></span>Can be added</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Group international flights from India</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Travel insurance</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">School / university exchange day</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Pre-departure parent session</span>
+    </div>
+    <div style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:14px">
+      <span style="font:700 18px/1.2 Manrope,sans-serif;display:flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:#D84A3A"></span>Not included</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Visa fees</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Personal expenses and shopping</span>
+      <span style="font-size:15px;line-height:1.5;color:#2C3F4C">Anything not listed in the proposal</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Itinerary teaser" style="max-width:1240px;margin:0 auto;padding:0 32px 96px">
+  <div style="background:#172B3A;color:#F7F5EF;border-radius:28px;padding:clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:space-between">
+    <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0;font:700 clamp(28px,3vw,40px)/1.1 Manrope,sans-serif;letter-spacing:-0.025em;color:#fff">See how a week might flow.</h2>
+      <p style="margin:0;font:400 16px/1.6 Inter,sans-serif;color:#C9D2D8;max-width:520px">Three illustrative itineraries, day by day — with the learning objective behind each stop.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="Sample%20Itineraries.dc.html" style="padding:17px 24px;border-radius:12px;background:#fff;color:#172B3A;font:600 16px/1 Inter,sans-serif;text-decoration:none">Sample itineraries</a>
+      <a href="Plan%20a%20Trip.dc.html" style="padding:17px 26px;border-radius:12px;background:#D84A3A;color:#fff;font:700 16px/1 Inter,sans-serif;text-decoration:none" style-hover="background:#BF3B2C">Request a Custom Trip Proposal</a>
+    </div>
+  </div>
+</section>
+
+<dc-import name="Site Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { city: 0 };
+  data = [
+    { name: 'Tokyo', jp: '東京', tag: 'Tech & everyday systems', desc: 'The easiest place to start. Science museums, robotics showrooms, university campuses and a transport network students will talk about for months.', learn: ['STEM', 'Urban systems', 'University visits'] },
+    { name: 'Kyoto', jp: '京都', tag: 'Heritage & craft', desc: 'Temples, gardens and craft workshops where students try tea ceremony, calligraphy or indigo dyeing with local makers.', learn: ['Culture', 'Traditional arts', 'Reflection'] },
+    { name: 'Osaka', jp: '大阪', tag: 'Industry & food culture', desc: 'A working city with manufacturing and innovation visits, plus a lively, affordable base for larger groups.', learn: ['Industry', 'Business', 'Food systems'] },
+    { name: 'Hiroshima', jp: '広島', tag: 'Peace & history', desc: 'The Peace Memorial Park and museum give older students a serious, guided encounter with history and its lessons.', learn: ['History', 'Global citizenship', 'Ethics'] },
+    { name: 'Nagoya', jp: '名古屋', tag: 'Engineering & manufacturing', desc: 'Japan\u2019s manufacturing heartland — strong for engineering students, with science and industry museums, subject to availability.', learn: ['Engineering', 'Manufacturing', 'Innovation'] },
+    { name: 'Hakone & Fuji', jp: '箱根', tag: 'Nature & geology', desc: 'Volcanic landscapes, hot springs and a slower day between cities — good for earth science and a breather.', learn: ['Geography', 'Earth science', 'Sustainability'] },
+  ];
+  photos = [{"src":"https://images.unsplash.com/photo-1420745628365-ba93c07cb5ca?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Jason Ortego on Unsplash","href":"https://unsplash.com/@jasonortego"},{"src":"https://images.unsplash.com/photo-1578469645742-46cae010e5d4?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Cosmin Georgian on Unsplash","href":"https://unsplash.com/@cosmingeorgian"},{"src":"https://images.unsplash.com/photo-1589452271712-64b8a66c7b71?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Nomadic Julien on Unsplash","href":"https://unsplash.com/@nomadicjulien"},{"src":"https://images.unsplash.com/photo-1504109586057-7a2ae83d1338?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Nicki Eliza Schinow on Unsplash","href":"https://unsplash.com/@nicki_schinow"},{"src":"https://images.unsplash.com/photo-1751607238847-6b55276e4b44?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Johan Mouchet on Unsplash","href":"https://unsplash.com/@johanmouchet"},{"src":"https://images.unsplash.com/photo-1635934901493-f45dd956d4b6?w=1600&q=70&auto=format&fit=crop","credit":"Photo by Yu on Unsplash","href":"https://unsplash.com/@hiraganakat"}];
+  renderVals() {
+    const i = this.state.city, c = this.data[i];
+    return {
+      cities: this.data.map((d, j) => ({ name: d.name, tag: d.tag, on: i === j, off: i !== j, pick: () => this.setState({ city: j }) })),
+      city: c, cityImgs: this.data.map((d, j) => ({ on: i === j, id: 'jp-city-' + j, label: d.name + ' photo', ...this.photos[j] })),
+    };
+  }
+}
+</script>
+</body>
+</html>

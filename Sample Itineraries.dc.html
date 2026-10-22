@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
+<div style="min-height:100vh;background:#F7F5EF">
+<dc-import name="Site Nav" active="itineraries" hint-size="100%,72px" style="position:sticky;top:0;z-index:50"></dc-import>
+
+<section data-screen-label="Itineraries intro" style="max-width:1240px;margin:0 auto;padding:72px 32px 32px;display:flex;flex-direction:column;gap:20px">
+  <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Sample itineraries</span>
+  <h1 style="margin:0;max-width:820px;font:800 clamp(44px,5.4vw,72px)/1 Manrope,sans-serif;letter-spacing:-0.035em;text-wrap:balance">What a week in Japan could look like.</h1>
+  <div style="display:flex;gap:12px;align-items:flex-start;max-width:720px;padding:16px 18px;background:#E9BFC4;border-radius:14px">
+    <span style="flex:none;font:700 12px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;padding:6px 8px;border-radius:6px;background:#172B3A;color:#fff">Illustrative</span>
+    <span style="font:400 15px/1.5 Inter,sans-serif;color:#172B3A">These are examples, not confirmed packages. Routes, partner visits and timings are confirmed in your proposal.</span>
+  </div>
+</section>
+
+<section data-screen-label="Itinerary detail" style="max-width:1240px;margin:0 auto;padding:24px 32px 96px">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(23,43,58,0.14)">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+      <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.pick }}" style="padding:14px 20px;border-radius:12px;border:1.5px solid #172B3A;background:#172B3A;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:6px"><span style="font:700 16px/1 Manrope,sans-serif">{{ t.name }}</span><span style="font:500 12px/1 Inter,sans-serif;color:#C9D2D8">{{ t.dur }}</span></button></sc-if>
+      <sc-if value="{{ t.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.pick }}" style="padding:14px 20px;border-radius:12px;border:1.5px solid rgba(23,43,58,0.18);background:#fff;color:#172B3A;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:6px" style-hover="border-color:#172B3A"><span style="font:700 16px/1 Manrope,sans-serif">{{ t.name }}</span><span style="font:500 12px/1 Inter,sans-serif;color:#4A5A66">{{ t.dur }}</span></button></sc-if>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:56px;padding-top:40px;align-items:flex-start">
+    <aside style="flex:1 1 300px;display:flex;flex-direction:column;gap:22px;position:sticky;top:100px;min-width:0">
+      <h2 style="margin:0;font:800 36px/1.05 Manrope,sans-serif;letter-spacing:-0.025em">{{ it.name }}</h2>
+      <p style="margin:0;font:400 16px/1.6 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">{{ it.pitch }}</p>
+      <div style="display:flex;flex-direction:column;border-top:1px solid rgba(23,43,58,0.14)">
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(23,43,58,0.14);font-size:15px"><span style="color:#4A5A66">Example duration</span><span style="font-weight:600">{{ it.dur }}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(23,43,58,0.14);font-size:15px"><span style="color:#4A5A66">Route</span><span style="font-weight:600;text-align:right">{{ it.route }}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(23,43,58,0.14);font-size:15px"><span style="color:#4A5A66">Best for</span><span style="font-weight:600;text-align:right">{{ it.who }}</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font:600 12px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#4A5A66">Learning objectives</span>
+        <sc-for list="{{ it.goals }}" as="g" hint-placeholder-count="3"><span style="font:500 15px/1.45 Inter,sans-serif;padding:10px 14px;background:#D9E5DF;border-radius:10px">{{ g }}</span></sc-for>
+      </div>
+      <a href="Plan%20a%20Trip.dc.html" style="padding:17px 22px;border-radius:12px;background:#D84A3A;color:#fff;font:700 16px/1 Inter,sans-serif;text-decoration:none;text-align:center" style-hover="background:#BF3B2C">Customize This Experience</a>
+    </aside>
+
+    <ol style="flex:1.6 1 480px;min-width:0;margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+      <sc-for list="{{ it.days }}" as="d" hint-placeholder-count="6">
+        <li style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <span style="width:56px;height:56px;border-radius:50%;background:#fff;border:1.5px solid #172B3A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px"><span style="font:600 9px/1 Inter,sans-serif;letter-spacing:0.08em">DAY</span><span style="font:800 18px/1 Manrope,sans-serif">{{ d.n }}</span></span>
+            <span style="flex:1;width:1.5px;background:rgba(23,43,58,0.2);min-height:24px"></span>
+          </div>
+          <div style="padding:6px 0 36px;display:flex;flex-direction:column;gap:10px">
+            <span style="font:600 13px/1 Inter,sans-serif;color:#D84A3A;letter-spacing:0.04em">{{ d.city }}</span>
+            <span style="font:700 21px/1.25 Manrope,sans-serif;letter-spacing:-0.01em">{{ d.title }}</span>
+            <span style="font:400 15px/1.6 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">{{ d.body }}</span>
+            <span style="align-self:flex-start;font:500 13px/1.4 Inter,sans-serif;padding:6px 10px;border-radius:8px;background:#fff;border:1px solid rgba(23,43,58,0.12)">Learning: {{ d.learn }}</span>
+          </div>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+
+<dc-import name="Site Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { i: 0 };
+  data = [
+    { name: 'Japan Discovery', dur: '6 days / 5 nights', route: 'Tokyo → Hakone → Kyoto', who: 'Schools, first trip abroad',
+      pitch: 'A gentle, well-paced introduction: one big city, one day in nature, one city of temples and craft.',
+      goals: ['Cultural awareness', 'Observation & reflection', 'Independence in a new place'],
+      days: [
+        ['1', 'Tokyo', 'Arrive and settle in', 'Airport meet, coach to hotel, short walk around the neighbourhood and an early dinner. Orientation on etiquette and the week ahead.', 'Adapting to a new place'],
+        ['2', 'Tokyo', 'How a megacity works', 'Morning at a science museum, afternoon learning to read the metro map in small groups with teachers.', 'Systems & navigation'],
+        ['3', 'Hakone', 'Volcanoes and hot springs', 'Coach to Hakone, ropeway over volcanic valleys and a lake cruise with a view of Fuji on clear days.', 'Geography & earth science'],
+        ['4', 'Kyoto', 'Bullet train and temples', 'Shinkansen to Kyoto. Afternoon at a temple complex with a guide who explains what students are looking at.', 'History & architecture'],
+        ['5', 'Kyoto', 'Hands-on craft day', 'Tea ceremony and calligraphy workshop, then a reflection session where students share what surprised them.', 'Traditional arts'],
+        ['6', 'Kyoto → India', 'Departure', 'Morning journals, transfer to Kansai airport, flight home.', 'Reflection'],
+      ] },
+    { name: 'STEM & Innovation', dur: '7 days / 6 nights', route: 'Tokyo → Nagoya → Osaka', who: 'Class 9–12, engineering colleges',
+      pitch: 'Science, robotics and modern infrastructure, with a daily journal linking each visit to the syllabus.',
+      goals: ['Applied science', 'Engineering thinking', 'Problem-solving'],
+      days: [
+        ['1', 'Tokyo', 'Arrive, orientation', 'Hotel check-in and a briefing on the week\u2019s learning journal.', 'Setting objectives'],
+        ['2', 'Tokyo', 'Future tech museum', 'Robotics and space exhibits, then a hands-on workshop where available.', 'Robotics & AI'],
+        ['3', 'Tokyo', 'Earthquake-ready city', 'Disaster-preparedness centre: simulations and a look at how buildings are designed to move.', 'Structural engineering'],
+        ['4', 'Nagoya', 'Shinkansen to industry', 'Ride the bullet train; afternoon at an industry or science museum.', 'Manufacturing'],
+        ['5', 'Nagoya', 'Manufacturing visit', 'Visit to a production or innovation site, subject to availability.', 'Industry context'],
+        ['6', 'Osaka', 'Design challenge day', 'Teams present a solution to a city problem they observed during the week.', 'Design thinking'],
+        ['7', 'Osaka → India', 'Departure', 'Final reflections and flight home from Kansai.', 'Reflection'],
+      ] },
+    { name: 'School & Cultural Exchange', dur: '8 days / 7 nights', route: 'Tokyo → Kanazawa → Kyoto', who: 'Schools & colleges seeking exchange',
+      pitch: 'Time with Japanese students at its centre, wrapped in culture and guided learning.',
+      goals: ['Cross-cultural communication', 'Comparing education systems', 'Language confidence'],
+      days: [
+        ['1', 'Tokyo', 'Arrive and settle in', 'Meet the coordinator, hotel check-in, welcome dinner.', 'Orientation'],
+        ['2', 'Tokyo', 'Basic Japanese', 'Language session in the morning; guided practice at a local market in the afternoon.', 'Language'],
+        ['3', 'Tokyo', 'School exchange day', 'Join classes and clubs at a partner school; students present on their Indian city. Subject to partner confirmation.', 'Exchange'],
+        ['4', 'Kanazawa', 'Gardens and crafts', 'Train to Kanazawa; gold-leaf or pottery workshop.', 'Traditional arts'],
+        ['5', 'Kanazawa', 'Old town walk', 'Samurai and geisha districts with a local guide.', 'History'],
+        ['6', 'Kyoto', 'Temples and tea', 'Temple visit and tea ceremony.', 'Culture'],
+        ['7', 'Kyoto', 'Reflection and presentations', 'Students prepare and share what they learned — great for parents\u2019 evenings later.', 'Communication'],
+        ['8', 'Kyoto → India', 'Departure', 'Transfer to Kansai airport.', 'Reflection'],
+      ] },
+  ];
+  renderVals() {
+    const i = this.state.i, c = this.data[i];
+    return {
+      tabs: this.data.map((d, j) => ({ name: d.name, dur: 'e.g. ' + d.dur, on: i === j, off: i !== j, pick: () => this.setState({ i: j }) })),
+      it: { ...c, dur: 'e.g. ' + c.dur, days: c.days.map(([n, city, title, body, learn]) => ({ n, city, title, body, learn })) },
+    };
+  }
+}
+</script>
+</body>
+</html>
