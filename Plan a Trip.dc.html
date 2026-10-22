@@ -15,7 +15,7 @@
   <aside style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:28px;position:sticky;top:100px">
     <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Request a custom trip proposal</span>
     <h1 style="margin:0;font:800 clamp(40px,4.6vw,60px)/1.02 Manrope,sans-serif;letter-spacing:-0.03em;text-wrap:balance">Tell us where you're starting from.</h1>
-    <p style="margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">A full itinerary, a few ideas or nothing but a month and a headcount — all are fine. It takes about four minutes, and nothing here commits you to anything.</p>
+    <p style="margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">A full itinerary, a few ideas or nothing but a month and a headcount - all are fine. It takes about four minutes, and nothing here commits you to anything.</p>
     <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(23,43,58,0.14)">
       <span style="font:700 15px/1 Manrope,sans-serif;padding:20px 0 6px">What happens next</span>
       <div style="display:flex;gap:16px;padding:14px 0"><span style="flex:none;width:26px;height:26px;border-radius:50%;background:#172B3A;color:#F7F5EF;font:700 13px/26px Inter,sans-serif;text-align:center">1</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#2C3F4C">A coordinator reads your request and replies within [X] working days.</span></div>
@@ -117,7 +117,7 @@
             </sc-for>
           </div>
           <sc-if value="{{ showBudgetInput }}" hint-placeholder-val="{{ false }}">
-            <input placeholder="Amount in ₹ — a rough range is fine" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A">
+            <input placeholder="Amount in ₹ - a rough range is fine" style="padding:14px 16px;border:1.5px solid rgba(23,43,58,0.18);border-radius:12px;background:#fff;font-size:15px;color:#172B3A">
           </sc-if>
         </div>
       </sc-if>
@@ -139,7 +139,7 @@
       <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-direction:column;gap:22px;padding:24px 0">
           <span style="width:56px;height:56px;border-radius:50%;background:#D9E5DF;color:#172B3A;display:flex;align-items:center;justify-content:center;font:700 26px/1 Inter,sans-serif">✓</span>
-          <h2 style="margin:0;font:800 36px/1.08 Manrope,sans-serif;letter-spacing:-0.025em">Thank you — we have your request.</h2>
+          <h2 style="margin:0;font:800 36px/1.08 Manrope,sans-serif;letter-spacing:-0.025em">Thank you - we have your request.</h2>
           <p style="margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">A coordinator will reply to your email within [X] working days to set up a discovery call. A copy of your answers is on its way to your inbox.</p>
           <div style="display:flex;flex-direction:column;gap:0;border:1px solid rgba(23,43,58,0.12);border-radius:16px;overflow:hidden">
             <div style="padding:16px 20px;display:flex;justify-content:space-between;gap:12px;background:#F7F5EF"><span style="font:600 14px/1.3 Inter,sans-serif">Your request</span><span style="font:600 13px/1 Inter,sans-serif;color:#D84A3A">Received</span></div>
@@ -201,7 +201,7 @@ class Component extends DCLogic {
       }),
       consentBg: s.consent ? '#172B3A' : '#fff', consentMark: s.consent ? '✓' : '',
       toggleConsent: () => this.setState({ consent: !s.consent }),
-      sumOrg: s.org, sumGroup: s.size + ' people · ages ' + s.age, sumGoals: s.goals.join(', ') || '—',
+      sumOrg: s.org, sumGroup: s.size + ' people · ages ' + s.age, sumGoals: s.goals.join(', ') || '-',
     };
   }
 }
