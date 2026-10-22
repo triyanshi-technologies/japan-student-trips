@@ -7,12 +7,12 @@
 </head>
 <body>
 <x-dc>
-<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}input,textarea,select{font:inherit}input:focus,textarea:focus,select:focus{outline:none;border-color:#172B3A!important;box-shadow:0 0 0 3px rgba(216,74,58,0.25)}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}input,textarea,select{font:inherit}input:focus,textarea:focus,select:focus{outline:none;border-color:#172B3A!important;box-shadow:0 0 0 3px rgba(216,74,58,0.25)}@media (max-width:760px){.pt-sec{padding:32px 16px 56px!important;gap:32px!important}.pt-aside{position:static!important;flex-basis:100%!important}.pt-form{flex-basis:100%!important;border-radius:18px!important}.pt-prog{padding:18px 18px!important}.pt-prog span{white-space:normal!important}.pt-body{padding:22px 18px 26px!important;gap:22px!important}.pt-body [style*="auto-fit"]{grid-template-columns:minmax(0,1fr)!important}.pt-body input,.pt-body textarea,.pt-body select{font-size:16px!important;width:100%;min-width:0}.pt-body h2{font-size:28px!important}}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
 <div style="min-height:100vh;background:#F7F5EF">
 <dc-import name="Site Nav" active="plan" hint-size="100%,72px" style="position:sticky;top:0;z-index:50"></dc-import>
 
-<section data-screen-label="Plan a Trip" style="max-width:1240px;margin:0 auto;padding:56px 32px 96px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
-  <aside style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:28px;position:sticky;top:100px">
+<section class="pt-sec" data-screen-label="Plan a Trip" style="max-width:1240px;margin:0 auto;padding:56px 32px 96px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+  <aside class="pt-aside" style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:28px;position:sticky;top:100px">
     <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Request a custom trip proposal</span>
     <h1 style="margin:0;font:800 clamp(40px,4.6vw,60px)/1.02 Manrope,sans-serif;letter-spacing:-0.03em;text-wrap:balance">Tell us where you're starting from.</h1>
     <p style="margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">A full itinerary, a few ideas or nothing but a month and a headcount - all are fine. It takes about four minutes, and nothing here commits you to anything.</p>
@@ -32,15 +32,15 @@
     </div>
   </aside>
 
-  <div style="flex:1.4 1 520px;min-width:0;background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:24px;overflow:hidden">
+  <div class="pt-form" style="flex:1.4 1 520px;min-width:0;background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:24px;overflow:hidden">
     <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
-      <div style="padding:24px 36px;border-bottom:1px solid rgba(23,43,58,0.08);display:flex;flex-direction:column;gap:14px">
+      <div class="pt-prog" style="padding:24px 36px;border-bottom:1px solid rgba(23,43,58,0.08);display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;justify-content:space-between;font:600 13px/1 Inter,sans-serif;color:#4A5A66"><span style="white-space:nowrap">Step {{ stepNum }} of 4 · {{ stepName }}</span><span style="flex:none">{{ pct }}%</span></div>
         <div style="height:4px;background:#EEEBE3;border-radius:4px;overflow:hidden"><div style="height:100%;width:{{ pctW }};background:#D84A3A;border-radius:4px;transition:width 300ms ease-out"></div></div>
       </div>
     </sc-if>
 
-    <div style="padding:32px 36px 36px;display:flex;flex-direction:column;gap:28px">
+    <div class="pt-body" style="padding:32px 36px 36px;display:flex;flex-direction:column;gap:28px">
       <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:12px">
           <span style="font:600 15px/1.3 Inter,sans-serif">Organisation type <span style="color:#D84A3A">*</span></span>

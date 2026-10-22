@@ -7,11 +7,11 @@
 </head>
 <body>
 <x-dc>
-<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script src="./image-slot.js"></script><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}@media (max-width:760px){.it-pad{padding-left:16px!important;padding-right:16px!important}.it-intro{padding-top:40px!important}.it-wrap{gap:32px!important;padding-top:28px!important}.it-aside{position:static!important;flex-basis:100%!important}.it-list{flex-basis:100%!important}.it-day{grid-template-columns:48px minmax(0,1fr)!important;gap:12px!important}.it-day .it-dot{width:44px!important;height:44px!important}.it-tabs button{flex:1 1 calc(50% - 8px);min-width:0}.it-aside h2{font-size:28px!important}}@media (prefers-reduced-motion:reduce){*{transition:none!important}}</style></helmet>
 <div style="min-height:100vh;background:#F7F5EF">
 <dc-import name="Site Nav" active="itineraries" hint-size="100%,72px" style="position:sticky;top:0;z-index:50"></dc-import>
 
-<section data-screen-label="Itineraries intro" style="max-width:1240px;margin:0 auto;padding:72px 32px 32px;display:flex;flex-direction:column;gap:20px">
+<section class="it-pad it-intro" data-screen-label="Itineraries intro" style="max-width:1240px;margin:0 auto;padding:72px 32px 32px;display:flex;flex-direction:column;gap:20px">
   <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Sample itineraries</span>
   <h1 style="margin:0;max-width:820px;font:800 clamp(44px,5.4vw,72px)/1 Manrope,sans-serif;letter-spacing:-0.035em;text-wrap:balance">What a week in Japan could look like.</h1>
   <div style="display:flex;gap:12px;align-items:flex-start;max-width:720px;padding:16px 18px;background:#E9BFC4;border-radius:14px">
@@ -20,16 +20,16 @@
   </div>
 </section>
 
-<section data-screen-label="Itinerary detail" style="max-width:1240px;margin:0 auto;padding:24px 32px 96px">
-  <div style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(23,43,58,0.14)">
+<section class="it-pad" data-screen-label="Itinerary detail" style="max-width:1240px;margin:0 auto;padding:24px 32px 96px">
+  <div class="it-tabs" style="display:flex;gap:8px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(23,43,58,0.14)">
     <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
       <sc-if value="{{ t.on }}" hint-placeholder-val="{{ false }}"><button onClick="{{ t.pick }}" style="padding:14px 20px;border-radius:12px;border:1.5px solid #172B3A;background:#172B3A;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:6px"><span style="font:700 16px/1 Manrope,sans-serif">{{ t.name }}</span><span style="font:500 12px/1 Inter,sans-serif;color:#C9D2D8">{{ t.dur }}</span></button></sc-if>
       <sc-if value="{{ t.off }}" hint-placeholder-val="{{ true }}"><button onClick="{{ t.pick }}" style="padding:14px 20px;border-radius:12px;border:1.5px solid rgba(23,43,58,0.18);background:#fff;color:#172B3A;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:6px" style-hover="border-color:#172B3A"><span style="font:700 16px/1 Manrope,sans-serif">{{ t.name }}</span><span style="font:500 12px/1 Inter,sans-serif;color:#4A5A66">{{ t.dur }}</span></button></sc-if>
     </sc-for>
   </div>
 
-  <div style="display:flex;flex-wrap:wrap;gap:56px;padding-top:40px;align-items:flex-start">
-    <aside style="flex:1 1 300px;display:flex;flex-direction:column;gap:22px;position:sticky;top:100px;min-width:0">
+  <div class="it-wrap" style="display:flex;flex-wrap:wrap;gap:56px;padding-top:40px;align-items:flex-start">
+    <aside class="it-aside" style="flex:1 1 300px;display:flex;flex-direction:column;gap:22px;position:sticky;top:100px;min-width:0">
       <h2 style="margin:0;font:800 36px/1.05 Manrope,sans-serif;letter-spacing:-0.025em">{{ it.name }}</h2>
       <p style="margin:0;font:400 16px/1.6 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">{{ it.pitch }}</p>
       <div style="display:flex;flex-direction:column;border-top:1px solid rgba(23,43,58,0.14)">
@@ -44,11 +44,11 @@
       <a href="Plan%20a%20Trip.dc.html" style="padding:17px 22px;border-radius:12px;background:#D84A3A;color:#fff;font:700 16px/1 Inter,sans-serif;text-decoration:none;text-align:center" style-hover="background:#BF3B2C">Customize This Experience</a>
     </aside>
 
-    <ol style="flex:1.6 1 480px;min-width:0;margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+    <ol class="it-list" style="flex:1.6 1 480px;min-width:0;margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
       <sc-for list="{{ it.days }}" as="d" hint-placeholder-count="6">
-        <li style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px">
+        <li class="it-day" style="display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px">
           <div style="display:flex;flex-direction:column;align-items:center">
-            <span style="width:56px;height:56px;border-radius:50%;background:#fff;border:1.5px solid #172B3A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px"><span style="font:600 9px/1 Inter,sans-serif;letter-spacing:0.08em">DAY</span><span style="font:800 18px/1 Manrope,sans-serif">{{ d.n }}</span></span>
+            <span class="it-dot" style="width:56px;height:56px;border-radius:50%;background:#fff;border:1.5px solid #172B3A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px"><span style="font:600 9px/1 Inter,sans-serif;letter-spacing:0.08em">DAY</span><span style="font:800 18px/1 Manrope,sans-serif">{{ d.n }}</span></span>
             <span style="flex:1;width:1.5px;background:rgba(23,43,58,0.2);min-height:24px"></span>
           </div>
           <div style="padding:6px 0 36px;display:flex;flex-direction:column;gap:10px">

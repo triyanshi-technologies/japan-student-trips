@@ -7,11 +7,11 @@
 </head>
 <body>
 <x-dc>
-<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}</style></helmet>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#F7F5EF;color:#172B3A;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#172B3A}a:hover{color:#D84A3A}*{box-sizing:border-box}@media (max-width:760px){.sp-pad{padding-left:16px!important;padding-right:16px!important}.sp-intro{padding-top:40px!important;padding-bottom:32px!important;gap:20px!important}.sp-head{display:none!important}.sp-row{grid-template-columns:minmax(0,1fr)!important}.sp-row>span{padding:6px 18px!important}.sp-row>span:first-child{padding-top:18px!important;font-size:18px!important}.sp-row>span:last-child{padding-bottom:18px!important}.sp-row>span[data-label]::before{content:attr(data-label);display:block;margin-bottom:2px;font:600 11px/1.2 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A}.sp-emerg{padding:48px 16px!important;gap:32px!important}.sp-step{padding:18px!important;gap:14px!important}.sp-card{padding:22px!important}}</style></helmet>
 <div style="min-height:100vh;background:#F7F5EF">
 <dc-import name="Site Nav" active="safety" hint-size="100%,72px" style="position:sticky;top:0;z-index:50"></dc-import>
 
-<section data-screen-label="Safety intro" style="max-width:1240px;margin:0 auto;padding:72px 32px 56px;display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between">
+<section class="sp-pad sp-intro" data-screen-label="Safety intro" style="max-width:1240px;margin:0 auto;padding:72px 32px 56px;display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between">
   <div style="flex:1 1 560px;display:flex;flex-direction:column;gap:20px">
     <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#D84A3A">Safety &amp; planning</span>
     <h1 style="margin:0;font:800 clamp(44px,5.4vw,72px)/1 Manrope,sans-serif;letter-spacing:-0.035em;text-wrap:balance">The details principals and parents ask about.</h1>
@@ -19,55 +19,55 @@
   <p style="flex:1 1 320px;margin:0;font:400 17px/1.65 Inter,sans-serif;color:#3E4F5B;text-wrap:pretty">We'd rather be specific than reassuring. Here is how responsibilities are split and what happens if something goes wrong.</p>
 </section>
 
-<section data-screen-label="Responsibilities" style="max-width:1240px;margin:0 auto;padding:0 32px 88px">
+<section class="sp-pad" data-screen-label="Responsibilities" style="max-width:1240px;margin:0 auto;padding:0 32px 88px">
   <div style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:24px;overflow:hidden">
-    <div style="display:grid;grid-template-columns:minmax(140px,1fr) minmax(0,1.4fr) minmax(0,1.4fr);background:#172B3A;color:#fff;font:700 15px/1.3 Manrope,sans-serif">
+    <div class="sp-head" style="display:grid;grid-template-columns:minmax(140px,1fr) minmax(0,1.4fr) minmax(0,1.4fr);background:#172B3A;color:#fff;font:700 15px/1.3 Manrope,sans-serif">
       <span style="padding:18px 24px">Area</span><span style="padding:18px 24px">Waindo Connect</span><span style="padding:18px 24px">Your institution</span>
     </div>
     <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
-      <div style="display:grid;grid-template-columns:minmax(140px,1fr) minmax(0,1.4fr) minmax(0,1.4fr);border-top:1px solid rgba(23,43,58,0.10);font:400 15px/1.5 Inter,sans-serif">
+      <div class="sp-row" style="display:grid;grid-template-columns:minmax(140px,1fr) minmax(0,1.4fr) minmax(0,1.4fr);border-top:1px solid rgba(23,43,58,0.10);font:400 15px/1.5 Inter,sans-serif">
         <span style="padding:20px 24px;font:700 16px/1.3 Manrope,sans-serif">{{ r.area }}</span>
-        <span style="padding:20px 24px;color:#2C3F4C">{{ r.us }}</span>
-        <span style="padding:20px 24px;color:#2C3F4C">{{ r.you }}</span>
+        <span data-label="Waindo Connect" style="padding:20px 24px;color:#2C3F4C">{{ r.us }}</span>
+        <span data-label="Your institution" style="padding:20px 24px;color:#2C3F4C">{{ r.you }}</span>
       </div>
     </sc-for>
   </div>
 </section>
 
 <section data-screen-label="Emergency process" style="background:#D9E5DF">
-  <div style="max-width:1240px;margin:0 auto;padding:88px 32px;display:flex;flex-wrap:wrap;gap:56px">
+  <div class="sp-emerg" style="max-width:1240px;margin:0 auto;padding:88px 32px;display:flex;flex-wrap:wrap;gap:56px">
     <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:18px">
       <span style="font:600 13px/1 Inter,sans-serif;letter-spacing:0.08em;text-transform:uppercase">If something goes wrong</span>
       <h2 style="margin:0;font:700 clamp(32px,3.6vw,44px)/1.08 Manrope,sans-serif;letter-spacing:-0.025em;text-wrap:balance">One number. A clear chain.</h2>
       <p style="margin:0;font:400 16px/1.65 Inter,sans-serif;color:#2C3F4C;text-wrap:pretty">Before departure, your group lead gets a printed escalation card. This is the outline - the final version is agreed with you.</p>
     </div>
     <div style="flex:1.4 1 480px;display:flex;flex-direction:column;gap:12px;min-width:0">
-      <div style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">1</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">Group lead calls the on-ground coordinator</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">Reachable 24/7 for the whole trip. [Confirm languages before launch.]</span></div></div>
-      <div style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">2</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">Coordinator arranges local help</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">Clinic or hospital, interpreter, transport or police, depending on the situation.</span></div></div>
-      <div style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">3</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">India office informs the institution</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">Your designated contact back home is updated; the institution decides how parents are informed.</span></div></div>
-      <div style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">4</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">Insurance and follow-up</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">We help with claim paperwork and written incident notes.</span></div></div>
+      <div class="sp-step" style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">1</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">Group lead calls the on-ground coordinator</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">Reachable 24/7 for the whole trip. [Confirm languages before launch.]</span></div></div>
+      <div class="sp-step" style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">2</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">Coordinator arranges local help</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">Clinic or hospital, interpreter, transport or police, depending on the situation.</span></div></div>
+      <div class="sp-step" style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">3</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">India office informs the institution</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">Your designated contact back home is updated; the institution decides how parents are informed.</span></div></div>
+      <div class="sp-step" style="display:flex;gap:20px;padding:22px 24px;background:#F7F5EF;border-radius:16px;align-items:flex-start"><span style="flex:none;font:800 28px/1 Manrope,sans-serif;color:#D84A3A;width:28px">4</span><div style="display:flex;flex-direction:column;gap:6px"><span style="font:700 17px/1.25 Manrope,sans-serif">Insurance and follow-up</span><span style="font:400 15px/1.5 Inter,sans-serif;color:#3E4F5B">We help with claim paperwork and written incident notes.</span></div></div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="Dietary and documents" style="max-width:1240px;margin:0 auto;padding:88px 32px">
+<section class="sp-pad" data-screen-label="Dietary and documents" style="max-width:1240px;margin:0 auto;padding:88px 32px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
-    <div style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:14px">
+    <div class="sp-card" style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:14px">
       <span style="font:700 22px/1.2 Manrope,sans-serif">Food &amp; dietary needs</span>
       <p style="margin:0;font:400 15px/1.6 Inter,sans-serif;color:#3E4F5B">We collect vegetarian, Jain, egg-free and allergy needs early and confirm each one with hotels and restaurants in writing. Indian meals can be arranged on some evenings if you'd like.</p>
     </div>
-    <div style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:14px">
+    <div class="sp-card" style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:14px">
       <span style="font:700 22px/1.2 Manrope,sans-serif">Visa &amp; documentation</span>
       <p style="margin:0;font:400 15px/1.6 Inter,sans-serif;color:#3E4F5B">Checklists, invitation and itinerary letters, and a timeline that works backwards from departure. Decisions are made by the Embassy of Japan - we never promise approval.</p>
     </div>
-    <div style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:14px">
+    <div class="sp-card" style="background:#fff;border:1px solid rgba(23,43,58,0.10);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:14px">
       <span style="font:700 22px/1.2 Manrope,sans-serif">Stays &amp; movement</span>
       <p style="margin:0;font:400 15px/1.6 Inter,sans-serif;color:#3E4F5B">Clean, central hotels with twin or triple rooms, separate floors where possible, private coaches and pre-booked rail seats so the group stays together.</p>
     </div>
   </div>
 </section>
 
-<section data-screen-label="Safety CTA" style="max-width:1240px;margin:0 auto;padding:0 32px 96px">
+<section class="sp-pad" data-screen-label="Safety CTA" style="max-width:1240px;margin:0 auto;padding:0 32px 96px">
   <div style="background:#172B3A;color:#fff;border-radius:28px;padding:clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between">
     <h2 style="margin:0;flex:1 1 420px;font:700 clamp(28px,3vw,40px)/1.1 Manrope,sans-serif;letter-spacing:-0.025em;color:#fff;text-wrap:balance">Have a question your management committee will ask? Ask us first.</h2>
     <a href="Plan%20a%20Trip.dc.html" style="padding:17px 26px;border-radius:12px;background:#D84A3A;color:#fff;font:700 16px/1 Inter,sans-serif;text-decoration:none" style-hover="background:#BF3B2C">Request a Custom Trip Proposal</a>
